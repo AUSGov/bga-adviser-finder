@@ -656,6 +656,11 @@ $(document).ready(function () {
         $('#' + active_view).addClass('active');
     });
 
+    
+    /*$('.apply-postcode').on('click', function(){
+        console.log('clicked');
+        map.center
+    });*/
 
     
     
