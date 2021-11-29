@@ -1,4 +1,3 @@
-//var chapters = {{ site.data.services | jsonify }};
 
 // Define Google map object
 let map;
@@ -93,26 +92,33 @@ function initMap() {
     const markerCluster = new markerClusterer.MarkerClusterer({ map, markers});
     
     
-    // We add a DOM event here to show an alert if the DIV containing the
-    // map is clicked.
-    const postcode_btn = document.getElementById("apply-postcode");
+    
+    let postcode_btn = document.getElementById("apply-postcode");
     
     google.maps.event.addDomListener(postcode_btn, "click", () => {
         
-        const postcode = document.getElementById("postcode-input").value;
-        console.log(postcode);
+        const postcode_input = parseInt(document.getElementById("postcode-input").value);
         
-        const new_lat = 
+        fetch('https://ausgov.github.io/bga-adviser-finder/js/postcodes.json')
+            .then(response => response.json())
+            .then(data => {
+                const result = data.find( ({ postcode }) => postcode === postcode_input );
+                console.log(result);
+                
+                const new_lat = result.lat;
+                const new_lng = result.long;
+                map.setCenter({lat: new_lat, lng:new_lng});
+                
+           })
         
-        map.setCenter({lat: -10.42877, lng:105.6757});
-        map.setZoom(6);
+        map.setZoom(10);
     });
 
 }  // End initMap()
 
 
 // Services providers array
-const services = [
+    const services = [
  {
    "Delivery 1": "Face to face",
    "Delivery 2": "Phone services",
