@@ -552,8 +552,19 @@
             /* Always set the map height explicitly to define the size of the div
                    * element that contains the map. */
             #map {
-                height: 500px;
+                height: 480px;
                 margin-bottom: 2px;
+            }
+            #reset {
+                position: absolute;
+                top: 82px;
+                left: 24px;
+                z-index: 9000;
+                padding: 8px 16px;
+                background: $white;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;
+                border-radius: 2px;
+                cursor:  pointer;
             }
             /* Optional: Makes the sample page fill the window. */
             html,

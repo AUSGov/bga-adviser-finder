@@ -4846,7 +4846,9 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view { margin-bottom: 32px; /* Always set the map height explicitly to define the size of the div element that contains the map. */ /* Optional: Makes the sample page fill the window. */ }
 
-#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #map { height: 500px; margin-bottom: 2px; }
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #map { height: 480px; margin-bottom: 2px; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #reset { position: absolute; top: 82px; left: 24px; z-index: 9000; padding: 8px 16px; background: #ffffff; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px; border-radius: 2px; cursor: pointer; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view html, #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view body { height: 100%; margin: 0; padding: 0; }
 

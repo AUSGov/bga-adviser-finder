@@ -117,6 +117,13 @@ function initMap() {
     // https://codepen.io/xtiggerk/pen/GBNPdO
  
     
+    // CUSTOM CONTROL to reset the map.
+    let reset_btn = document.getElementById("reset");
+    google.maps.event.addDomListener(reset, 'click', function() {
+        map.setCenter({lat: -27.000, lng: 133.000});
+        map.setZoom(4);
+    });
+    
 
 }  // End initMap()
 
