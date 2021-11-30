@@ -773,14 +773,14 @@
 
             <form>
                 <div class="checkbox-item" data-label="in-person" filter-type="delivery-type">
-                <label data-option="in-person" data-label="in-person" filter-type="delivery-type" > 
+                <label id="delivery-inperson" data-option="in-person" data-label="in-person" filter-type="delivery-type" > 
                     
                     In person services</label>
                     <input type="checkbox" id="in-person">
                 </div>
                 
                 <div class="checkbox-item" data-label="phone" filter-type="delivery-type">
-                <label data-option="phone" data-label="phone" filter-type="delivery-type">
+                <label id="delivery-phone" data-option="phone" data-label="phone" filter-type="delivery-type">
                     
                     Phone services</label>
                     <input type="checkbox" id="phone">
@@ -788,7 +788,7 @@
                 
                 
                 <div class="checkbox-item" data-label="online" filter-type="delivery-type">
-                <label data-option="online" data-label="online" filter-type="delivery-type">
+                <label id="delivery-online" data-option="online" data-label="online" filter-type="delivery-type">
                     
                     Online services</label>
                     <input type="checkbox" id="online">
@@ -938,13 +938,13 @@
 
     
     <div id="view-tabs-buttons">
-        <button class="list-view " data-label="list-view">List view</button>
-        <button class="maps-view active" data-label="maps-view">Map view</button>
+        <button class="list-view active" data-label="list-view">List view</button>
+        <button class="maps-view " data-label="maps-view">Map view</button>
     </div>
     
-    <div class="view-tab " id="list-view">
+    <div class="view-tab active" id="list-view">
     
-        <div class="search-card-result" id="search-result-1">
+        <div class="search-card-result">
    
             <div class="search-card-content">
                 <div class="top-row">
@@ -974,7 +974,7 @@
         
     </div>
         
-        <div class="search-card-result" id="search-result-2">
+        <div class="search-card-result">
    
             <div class="search-card-content">
                 <div class="top-row">
@@ -1004,9 +1004,7 @@
         
     </div>
         
-        
-        
-        <div class="search-card-result" id="search-result-3">
+        <div class="search-card-result">
    
             <div class="search-card-content">
                 <div class="top-row">
@@ -1035,11 +1033,8 @@
 
         
     </div>
-        
-        
-        
-        
-        <div class="search-card-result" id="search-result-4">
+     
+        <div class="search-card-result">
    
             <div class="search-card-content">
                 <div class="top-row">
@@ -1074,7 +1069,7 @@
     </div>
     
     
-    <div class="view-tab active" id="maps-view">
+    <div class="view-tab" id="maps-view">
         
         
 
@@ -1087,7 +1082,81 @@
     ></script>
  
         
-    
+    <div id="australia-wide">
+        
+        <div class="australia-wide-button">
+            <span class="australia-wide-count">23</span>
+            <button>Australia wide services</button>
+            <svg id="Icon_chevron_down" data-name="Icon / chevron / down" xmlns="http://www.w3.org/2000/svg" width="20" height="12.5" viewBox="0 0 20 12.5">
+                    <path id="Chevron_Down" data-name="Chevron / Down" d="M7.535,10,0,17.522,2.482,20,12.5,10,2.482,0,0,2.478Z" transform="translate(20) rotate(90)" fill="#333" />
+                </svg>
+        </div>
+        
+        <div class="australia-wide-content closed">
+            
+            <div class="search-card-result">
+
+                <div class="search-card-content">
+                    <div class="top-row">
+                        <p class="search-card-content-type" aria-hidden="true">Local council</p>
+
+
+                    </div>
+                    <h5 class="search-card-heading"><a href=/bga-adviser-finder/adviser/city-of-melbourne.html>City of Melbourne</a></h5>
+                    <p class="search-card-body">Your local council may provide advice, services and resources to help you start, grow and develop your business.</p>
+
+                    <div class="search-card-details">
+                        <ul>
+                            <li class="service-area">
+                                <svg id="Icon_pin" data-name="Icon / pin" xmlns="http://www.w3.org/2000/svg" width="11.851" height="16" viewBox="0 0 11.851 16">
+                                    <path id="Pin" d="M5.928,16a.5.5,0,0,1-.426-.223L1.249,9.7A6.08,6.08,0,0,1,.014,5.65,5.98,5.98,0,0,1,5.908,0a6.059,6.059,0,0,1,5.935,5.65A6.285,6.285,0,0,1,10.587,9.7L6.353,15.777A.5.5,0,0,1,5.928,16ZM5.908,3.5A2.512,2.512,0,1,0,8.4,6.016,2.5,2.5,0,0,0,5.908,3.5Z" transform="translate(0)" fill="#333" />
+                                </svg>
+
+                                <strong>Service area: </strong> Your local area</li>
+                            <li><strong>In person</strong></li>
+                            <li><strong>Phone</strong></li>
+                            <li><strong>Online</strong></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+        </div>
+            
+            <div class="search-card-result">
+   
+            <div class="search-card-content">
+                <div class="top-row">
+                    <p class="search-card-content-type" aria-hidden="true">Local council</p>
+
+                
+                </div>
+                <h5 class="search-card-heading"><a href=/bga-adviser-finder/adviser/city-of-melbourne.html>City of Melbourne</a></h5>
+                <p class="search-card-body">Your local council may provide advice, services and resources to help you start, grow and develop your business.</p>
+                
+                <div class="search-card-details">
+                    <ul>
+                        <li class="service-area">
+                            <svg id="Icon_pin" data-name="Icon / pin" xmlns="http://www.w3.org/2000/svg" width="11.851" height="16" viewBox="0 0 11.851 16">
+                                <path id="Pin" d="M5.928,16a.5.5,0,0,1-.426-.223L1.249,9.7A6.08,6.08,0,0,1,.014,5.65,5.98,5.98,0,0,1,5.908,0a6.059,6.059,0,0,1,5.935,5.65A6.285,6.285,0,0,1,10.587,9.7L6.353,15.777A.5.5,0,0,1,5.928,16ZM5.908,3.5A2.512,2.512,0,1,0,8.4,6.016,2.5,2.5,0,0,0,5.908,3.5Z" transform="translate(0)" fill="#333" />
+                            </svg>
+
+                            <strong>Service area: </strong> Your local area</li>
+                        <li><strong>In person</strong></li>
+                        <li><strong>Phone</strong></li>
+                        <li><strong>Online</strong></li>
+                    </ul>
+               
+                </div>
+            </div>
+
+        
+    </div>
+        
+        </div>
+        
+        </div>
     </div>
     
     

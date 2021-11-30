@@ -548,11 +548,12 @@
         
         #maps-view {
 
+            margin-bottom: 32px;
             /* Always set the map height explicitly to define the size of the div
                    * element that contains the map. */
             #map {
                 height: 500px;
-                margin-bottom: 32px;
+                margin-bottom: 2px;
             }
             /* Optional: Makes the sample page fill the window. */
             html,
@@ -597,7 +598,58 @@
             }
 
             
-
+            // Australia wide services
+            #australia-wide {
+                .australia-wide-button {
+                    background: #AADAFF;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 24px 32px;
+                    
+                    span {
+                        background: #E75755;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 100px;  
+                        color: $white;
+                        font-size: 14px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        @include font-format($font-family, $font-semibold, normal);
+                        margin-right: 8px;
+                    }
+                    button {
+                        background: none;
+                        border: none;
+                        margin-right: 8px;
+                        
+                        &:focus {
+                            outline: none;
+                            border: none;
+                        }
+                    }
+                    
+                }
+                .australia-wide-content {
+                    background: #AADAFF;
+                    padding: 0 32px 8px 32px;
+                    margin-bottom: 32px;
+                    
+                    &.closed {
+                        display: none;
+                    }
+                }
+                &.open {
+                    .australia-wide-button {
+                        svg {
+                            transform: rotate(180deg);  
+                        }
+                    }
+                    
+                }
+            }
 
 
         }

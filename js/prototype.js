@@ -645,22 +645,22 @@ $(document).ready(function () {
     */
     
     
-    // ADVISER 
+    // LIST VS MAPS VIEW
     $("#view-tabs-buttons button").on('click', function(){
         $("#view-tabs-buttons button").removeClass("active");
         $(this).addClass("active");
         
         var active_view = $(this).attr('data-label');
-        console.log(active_view);
         $('.view-tab').removeClass('active');
         $('#' + active_view).addClass('active');
     });
 
     
-    /*$('.apply-postcode').on('click', function(){
-        console.log('clicked');
-        map.center
-    });*/
+    // AUSTRALIA WIDE SERVICES
+    $('.australia-wide-button').on('click', function(){
+        $('#australia-wide').toggleClass('open');
+        $('.australia-wide-content').slideToggle();
+    });
 
     
     

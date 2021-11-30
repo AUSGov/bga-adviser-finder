@@ -4,7 +4,7 @@ let map;
 
 function initMap() {
   
-   map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
         center: {
           lat: -27.000,
           lng: 133.000
@@ -16,9 +16,8 @@ function initMap() {
         zoom: 4,
    });
     
-    
+    // Create markers
     let markers =  []; 
-  
     for (let i = 0; i < services.length; i++) {
         const lat = parseFloat(services[i].lat);
         const lng = parseFloat(services[i].lng);
@@ -62,7 +61,7 @@ function initMap() {
         
         const svgMarker = {
             path: "M12.431,33a1.054,1.054,0,0,1-.893-.46L2.619,20.008A12.4,12.4,0,0,1,12.387,0,12.617,12.617,0,0,1,24.832,11.653,12.816,12.816,0,0,1,22.2,20.008L13.322,32.54A1.048,1.048,0,0,1,12.431,33ZM12.387,7.226a5.18,5.18,0,1,0,5.224,5.181A5.208,5.208,0,0,0,12.387,7.226Z",
-            fillColor: "#2f70bf",
+            fillColor: "#E75755",
             fillOpacity: 1,
             strokeWeight: 0,
             rotation: 0,
@@ -73,6 +72,7 @@ function initMap() {
             position: {lat,lng},
             icon: svgMarker,
             map: map,
+            category: delivery3
         });
         
         marker.addListener("click", () => {
@@ -88,13 +88,11 @@ function initMap() {
 
         
     }
-    
+
     const markerCluster = new markerClusterer.MarkerClusterer({ map, markers});
     
-    
-    
+    // Apply postcode to map (move to place on map)
     let postcode_btn = document.getElementById("apply-postcode");
-    
     google.maps.event.addDomListener(postcode_btn, "click", () => {
         
         const postcode_input = parseInt(document.getElementById("postcode-input").value);
@@ -113,6 +111,12 @@ function initMap() {
         
         map.setZoom(10);
     });
+    
+    
+    // Apply checkbox filters to map - TRY THIS!
+    // https://codepen.io/xtiggerk/pen/GBNPdO
+ 
+    
 
 }  // End initMap()
 
@@ -181,9 +185,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "",
    "Service Area": "Northern Territory.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS Digital Solutions|Entrepreneurship Facilitators",
@@ -331,9 +335,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "The Kimberleys area of WA ",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Australian Small Business Advisory Service ASBAS Northern Australia Tourism Initiative NATI|Business Local",
@@ -1020,8 +1024,8 @@ function initMap() {
    "Postcode": 870
  },
  {
-   "Delivery 1": "Phone services",
-   "Delivery 2": "",
+   "Delivery 1": "",
+   "Delivery 2": "Phone services",
    "Delivery 3": "",
    "Delivery 4": "",
    "Service Area": "MacDonnell Regional Council area.",
@@ -1096,9 +1100,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Wide Bay Burnett",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "ASBAS|Business Enterprise Centre BEC",
@@ -1246,8 +1250,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Bundaberg, Fraser Coast, North Burnett, South Burnett and Gympie.",
    "Provides Advice On": "general business advice and planning",
@@ -1455,10 +1459,10 @@ function initMap() {
    "Postcode": 6640
  },
  {
-   "Delivery 1": "Home & workplace visits",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 1": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Services all of Australia.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Queensland State Government",
@@ -1501,9 +1505,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Brisbane, Redlands, Logan, Moreton Bay, Ipswich, Gold Coast.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|Business Enterprise Centre BEC",
@@ -1516,9 +1520,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Brisbane, Moreton Bay, Logan, Redlands, Gold Coast",
    "Provides Advice On": "digital and online",
    "Provider Type": "ASBAS Digital Solutions|Regional Development Australia",
@@ -1561,9 +1565,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Ipswich area of Queensland.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -1861,8 +1865,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Bangalow, Brunswick Heads, Byron Bay",
    "Provides Advice On": "general business advice and planning",
@@ -2251,9 +2255,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -2986,8 +2990,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "North east region of Perth.",
    "Provides Advice On": "general business advice and planning",
@@ -3121,8 +3125,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Western Australia",
    "Provides Advice On": "digital and online|dispute resolution|employing people|general business advice and planning|government grant information|importing and exporting|taxation|work health and safety",
@@ -3181,9 +3185,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Western Australia, Northern Territory and Queensland.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Local|Local Council",
@@ -3211,9 +3215,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Perth metropolitan region, WA.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Enterprise Centre BEC",
@@ -3451,9 +3455,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Fremantle, East Fremantle, Cockburn",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "ASBAS|Business Enterprise Centre BEC|Business Local|New Enterprise Incentive Scheme NEIS",
@@ -3766,9 +3770,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -3961,9 +3965,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Maitland",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS Digital Solutions|Business Enterprise Centre BEC|New Enterprise Incentive Scheme NEIS",
@@ -4036,9 +4040,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Newcastle, Lake Macquarie, Maitland",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -4306,9 +4310,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "The Orange region of NSW.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Connect|Business Enterprise Centre BEC|New Enterprise Incentive Scheme NEIS",
@@ -4381,9 +4385,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "South West and Peel Regions of WA.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Local",
@@ -4831,9 +4835,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Penrith, Hawkesbury, Blue Mountains",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Connect|Business Enterprise Centre BEC",
@@ -4876,9 +4880,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Greater Sydney metropolitan area.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Enterprise Centre BEC",
@@ -4921,9 +4925,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Metropolitan Sydney and regional New South Wales.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Connect",
@@ -5056,9 +5060,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Queensland, New South Wales, Victoria",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -5101,9 +5105,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Sydney metropolitan region.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Connect|Business Enterprise Centre BEC",
@@ -5116,9 +5120,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Fairfield, Liverpool, Canterbury-Bankstown",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -5130,10 +5134,10 @@ function initMap() {
    "Postcode": 2165
  },
  {
-   "Delivery 1": "Home & workplace visits",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 1": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "All of Australia.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Not for profit charity",
@@ -5236,8 +5240,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "All of New South Wales.",
    "Provides Advice On": "general business advice and planning",
@@ -5356,8 +5360,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Botany Bay, Randwick, Marrickville, Waverley",
    "Provides Advice On": "digital and online|general business advice and planning",
@@ -5506,9 +5510,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Campbelltown City Council.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Local Council",
@@ -5806,9 +5810,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Barossa Valley",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Enterprise Centre BEC",
@@ -6001,9 +6005,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Salisbury and Playford areas of Adelaide.",
    "Provides Advice On": "digital and online|general business advice and planning|importing and exporting",
    "Provider Type": "Business Enterprise Centre BEC",
@@ -6061,8 +6065,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Adelaide",
    "Provides Advice On": "digital and online|general business advice and planning",
@@ -6181,8 +6185,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Burnside, Campbelltown, Norwood",
    "Provides Advice On": "general business advice and planning",
@@ -6196,8 +6200,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Western Adelaide.",
    "Provides Advice On": "general business advice and planning",
@@ -6240,9 +6244,9 @@ function initMap() {
    "Postcode": 5071
  },
  {
-   "Delivery 1": "Online services",
+   "Delivery 1": "",
    "Delivery 2": "",
-   "Delivery 3": "",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "All of South Australia.",
    "Provides Advice On": "dispute resolution",
@@ -6376,9 +6380,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "",
+   "Delivery 4": "Online services",
    "Service Area": "Barossa, Yorke",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -6556,9 +6560,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Albury",
    "Provides Advice On": "digital and online|dispute resolution|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Connect|Business Enterprise Centre BEC",
@@ -6616,9 +6620,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "ACT.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS Digital Solutions|Business Enterprise Centre BEC",
@@ -6630,8 +6634,8 @@ function initMap() {
    "Postcode": 2612
  },
  {
-   "Delivery 1": "Phone services",
-   "Delivery 2": "",
+   "Delivery 1": "",
+   "Delivery 2": "Phone services",
    "Delivery 3": "",
    "Delivery 4": "",
    "Service Area": "Australia wide.",
@@ -6661,8 +6665,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "All of Australia",
    "Provides Advice On": "general business advice and planning",
@@ -6721,9 +6725,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Southern NSW.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Connect|Business Enterprise Centre BEC|Entrepreneurship Facilitators",
@@ -6736,9 +6740,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Northern New South Wales.",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS|ASBAS Digital Solutions|Business Connect|Business Enterprise Centre BEC|Entrepreneurship Facilitators",
@@ -6931,9 +6935,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Eurobodalla Shire",
    "Provides Advice On": "general business advice and planning|government grant information|work health and safety",
    "Provider Type": "Business Connect|Federal Government|Local Council|New South Wales Government",
@@ -7126,8 +7130,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "Shepparton region ",
    "Provides Advice On": "general business advice and planning",
@@ -7261,9 +7265,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Bega Valley Shire",
    "Provides Advice On": "general business advice and planning|government grant information|work health and safety",
    "Provider Type": "Business Connect|Federal Government|Local Council|New South Wales Government",
@@ -7501,9 +7505,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Ballarat",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -7651,9 +7655,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Inner Melbourne",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Enterprise Centre BEC|New Enterprise Incentive Scheme NEIS",
@@ -7786,8 +7790,8 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Online services",
-   "Delivery 3": "Phone services",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "Online services",
    "Delivery 4": "",
    "Service Area": "City of Melbourne.",
    "Provides Advice On": "general business advice and planning",
@@ -7846,9 +7850,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Australia wide.",
    "Provides Advice On": "general business advice and planning|digital and online|employing people",
    "Provider Type": "ASBAS|Victorian State Government",
@@ -8071,9 +8075,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "South east of Melbourne.",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -8161,9 +8165,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "",
    "Delivery 3": "",
-   "Delivery 4": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "All of Victoria.",
    "Provides Advice On": "work health and safety",
    "Provider Type": "Victorian State Government",
@@ -8461,9 +8465,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Burnie",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "ASBAS|Business Enterprise Centre BEC|Enterprise Centres Tasmania",
@@ -8506,9 +8510,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Burnie, Circular Head",
    "Provides Advice On": "digital and online|general business advice and planning",
    "Provider Type": "ASBAS Digital Solutions|Business Enterprise Centre BEC|Digital Ready for Business|Enterprise Centres Tasmania",
@@ -8596,9 +8600,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "The Break O'Day, Midlands and Glamorgan Spring Bay regions ",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "ASBAS|Business Enterprise Centre BEC|Enterprise Centres Tasmania",
@@ -8656,9 +8660,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Flinders Island",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Entrepreneurship Facilitators",
@@ -8820,10 +8824,10 @@ function initMap() {
    "Postcode": 7010
  },
  {
-   "Delivery 1": "Home & workplace visits",
+   "Delivery 1": "",
    "Delivery 2": "Phone services",
    "Delivery 3": "",
-   "Delivery 4": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "All of Tasmania.",
    "Provides Advice On": "work health and safety",
    "Provider Type": "Tasmanian State Government",
@@ -8851,9 +8855,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
-   "Delivery 3": "Phone services",
-   "Delivery 4": "",
+   "Delivery 2": "Phone services",
+   "Delivery 3": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "The Eastern Shore of Tasmania",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Local Council",
@@ -8881,9 +8885,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Southern Tasmania",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "ASBAS Digital Solutions|Business Enterprise Centre BEC|Enterprise Centres Tasmania",
@@ -8910,10 +8914,10 @@ function initMap() {
    "Postcode": 7050
  },
  {
-   "Delivery 1": "Home & workplace visits",
+   "Delivery 1": "",
    "Delivery 2": "Phone services",
    "Delivery 3": "",
-   "Delivery 4": "",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Blackmans Bay",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Enterprise Centre BEC|Entrepreneurship Facilitators",
@@ -8926,9 +8930,9 @@ function initMap() {
  },
  {
    "Delivery 1": "Face to face",
-   "Delivery 2": "Home & workplace visits",
+   "Delivery 2": "Phone services",
    "Delivery 3": "Online services",
-   "Delivery 4": "Phone services",
+   "Delivery 4": "Home & workplace visits",
    "Service Area": "Kingborough and the Huon Valley",
    "Provides Advice On": "general business advice and planning",
    "Provider Type": "Business Enterprise Centre BEC",
