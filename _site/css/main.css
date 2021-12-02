@@ -4866,7 +4866,11 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide .australia-wide-button { background: #AADAFF; width: 100%; display: flex; align-items: center; padding: 24px 32px; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide .australia-wide-button span { background: #E75755; width: 40px; height: 40px; border-radius: 100px; color: #ffffff; font-size: 14px; display: flex; justify-content: center; align-items: center; font-family: "Open Sans", sans-serif; font-weight: 600; font-style: normal; margin-right: 8px; }
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide .australia-wide-button .australia-wide-count { width: 54px; height: 54px; color: #ffffff; position: relative; justify-content: center; align-items: center; font-family: "Open Sans", sans-serif; font-weight: 600; font-style: normal; margin-right: 8px; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide .australia-wide-button .australia-wide-count .count { position: absolute; top: 0; left: 0; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 8000; font-size: 16px; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide .australia-wide-button .australia-wide-count svg { position: absolute; top: 0; left: 0; z-index: 7000; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide .australia-wide-button button { background: none; border: none; margin-right: 8px; }
 

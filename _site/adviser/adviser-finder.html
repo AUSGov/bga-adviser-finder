@@ -29,7 +29,8 @@
     
     <script src=/bga-adviser-finder/js/bootstrap.bundle.min.js></script>
     
-    <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    <!--<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>-->
+    <script src=/bga-adviser-finder/js/marker.js></script>
     
      <!--<script type="text/javascript"/bga-adviser-finder/js/services.json></script>-->
     <script type="text/javascript"/bga-adviser-finder/js/postcodes.json></script>
@@ -938,11 +939,11 @@
 
     
     <div id="view-tabs-buttons">
-        <button class="list-view active" data-label="list-view">List view</button>
-        <button class="maps-view " data-label="maps-view">Map view</button>
+        <button class="list-view " data-label="list-view">List view</button>
+        <button class="maps-view active" data-label="maps-view">Map view</button>
     </div>
     
-    <div class="view-tab active" id="list-view">
+    <div class="view-tab " id="list-view">
     
         <div class="search-card-result">
    
@@ -1069,7 +1070,7 @@
     </div>
     
     
-    <div class="view-tab " id="maps-view">
+    <div class="view-tab active" id="maps-view">
         
         
 
@@ -1085,7 +1086,17 @@
     <div id="australia-wide">
         
         <div class="australia-wide-button">
-            <span class="australia-wide-count">23</span>
+            
+            <div class="australia-wide-count">
+            <span class="count">23</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="54" height="54" viewBox="0 0 54 54">
+              <g id="Cluster_red" transform="translate(-2297 -2317)">
+                <circle id="Ellipse_11" data-name="Ellipse 11" cx="27" cy="27" r="27" transform="translate(2297 2317)" fill="#e75755" opacity="0.2"/>
+                <circle id="Ellipse_12" data-name="Ellipse 12" cx="22" cy="22" r="22" transform="translate(2302 2322)" fill="#e75755" opacity="0.3"/>
+                <circle id="Ellipse_13" data-name="Ellipse 13" cx="16.875" cy="16.875" r="16.875" transform="translate(2307 2327)" fill="#e75755"/>
+              </g>
+            </svg>
+            </div>
             <button>Australia wide services</button>
             <svg id="Icon_chevron_down" data-name="Icon / chevron / down" xmlns="http://www.w3.org/2000/svg" width="20" height="12.5" viewBox="0 0 20 12.5">
                     <path id="Chevron_Down" data-name="Chevron / Down" d="M7.535,10,0,17.522,2.482,20,12.5,10,2.482,0,0,2.478Z" transform="translate(20) rotate(90)" fill="#333" />

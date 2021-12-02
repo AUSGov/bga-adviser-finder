@@ -61,19 +61,10 @@ function initMap() {
         const infowindow = new google.maps.InfoWindow({
             content: contentString,
         });
-        
-        const svgMarker = {
-            path: "M12.431,33a1.054,1.054,0,0,1-.893-.46L2.619,20.008A12.4,12.4,0,0,1,12.387,0,12.617,12.617,0,0,1,24.832,11.653,12.816,12.816,0,0,1,22.2,20.008L13.322,32.54A1.048,1.048,0,0,1,12.431,33ZM12.387,7.226a5.18,5.18,0,1,0,5.224,5.181A5.208,5.208,0,0,0,12.387,7.226Z",
-            fillColor: "#E75755",
-            fillOpacity: 1,
-            strokeWeight: 0,
-            rotation: 0,
-            scale: 1,
-            anchor: new google.maps.Point(15, 30),
-        };   
+          
         const marker = new google.maps.Marker({
             position: {lat,lng},
-            icon: svgMarker,
+            icon: "../assets/Adviser_pin.svg",
             map: map,
             category: delivery3
         });
@@ -112,7 +103,7 @@ function initMap() {
                 
            })
         
-        map.setZoom(10);
+        map.setZoom(11);
     });
     
     
@@ -9960,4 +9951,3 @@ function initMap() {
    "Postcode": 5203
  }
 ]
-          

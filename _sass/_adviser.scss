@@ -554,7 +554,7 @@
             #map {
                 height: 480px;
                 margin-bottom: 2px;
-            }
+                          }
             #reset {
                 position: absolute;
                 top: 82px;
@@ -618,18 +618,33 @@
                     align-items: center;
                     padding: 24px 32px;
                     
-                    span {
-                        background: #E75755;
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 100px;  
+                    .australia-wide-count {
+                        width: 54px;
+                        height: 54px;  
                         color: $white;
-                        font-size: 14px;
-                        display: flex;
+                        position: relative;
                         justify-content: center;
                         align-items: center;
                         @include font-format($font-family, $font-semibold, normal);
                         margin-right: 8px;
+                        
+                        .count {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            top: 50%; 
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            z-index: 8000;
+                            font-size: 16px;
+                        }
+                        svg {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 7000;
+                        }
+                        
                     }
                     button {
                         background: none;
