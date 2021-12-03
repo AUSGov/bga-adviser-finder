@@ -4858,6 +4858,8 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view .gm-style .gm-style-iw-c .search-card-result { margin: 0; border: none; }
 
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view .gm-style .gm-style-iw-c .search-card-result .search-card-content { padding: 24px 24px 0 24px; }
+
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view .gm-style .gm-style-iw-c .search-card-result .search-card-details li strong { font-weight: 600; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view .gm-style .gm-style-iw-c button { background: pink !important; top: 8px !important; right: 8px !important; height: 24px !important; width: 24px !important; background: url(../assets/Icon-cross-333333.svg) no-repeat !important; opacity: 1 !important; background-size: 24px 24px !important; }
@@ -4890,13 +4892,13 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-body { font-size: 14px; line-height: 1.71; color: #333; padding-bottom: 16px; }
 
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-details .service-area { background: #E1EAF6 url("../assets/Icon-pin_black.svg") no-repeat; border-radius: 100px; padding: 8px 16px 8px 40px; background-position: 16px center; display: inline-block; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-details .service-area p { margin: 0; padding: 0; font-size: 12px; }
+
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-details ul { margin: 8px 0 0 0; padding: 0; display: flex; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-details ul li { list-style-type: none; text-indent: 0; font-size: 12px; display: block; margin-right: 24px; padding: 8px 0; }
-
-#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-details ul li.service-area { background: #E1EAF6; border-radius: 100px; padding: 8px 16px; }
-
-#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content .search-card-details ul li.service-area svg { margin-right: 8px; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .no-results { display: none; /*&.show { display: block; }*/ }
 
