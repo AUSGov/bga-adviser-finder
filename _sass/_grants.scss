@@ -1839,46 +1839,6 @@
         }
     }
 }
-@media(max-width: 576px) {
-    .page-number-wrapper {
-        margin-bottom: 32px;
-        .page-number {
-            display: none;
-        }
-        .select-number-results {
-            text-align: center;
-            width: 100%;
-        }
-    }
-    .pagination-wrapper {
-        .pagination {
-            a {
-                display: none;
-                margin: 0 4px;
-                
-                &.next, &.last {
-                    display: inline-block;
-                    text-indent: -9999px; 
-                    width: 10px;
-                }
-                &.active {
-                    display: inline-block;
-                    background: none;
-                    color: $blue-primary;
-                    padding: 0;
-                    
-                    &::before {
-                        content: "Page ";
-                    }
-                    &::after {
-                        content: " of 3";
-                    }
-                }
-            }
-        }
-    }
-    
-}
 
 /* DYNAMIC QUESTION */
 .hidden-question {
