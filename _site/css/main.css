@@ -4953,6 +4953,10 @@ ul.event-info li:last-of-type { padding: 0; }
 
 .adviser-callout .adviser-content { padding: 32px; }
 
+.adviser-callout .adviser-content .service-area-map { min-height: 20px; margin-top: 16px; }
+
+.adviser-callout .adviser-content .service-area-map img { width: 100%; max-width: 100%; height: auto; }
+
 .adviser-callout .adviser-content .adviser-details, .adviser-callout .adviser-content ul { padding: 0; margin: 0; }
 
 .adviser-callout .adviser-content .adviser-details li, .adviser-callout .adviser-content ul li { list-style-type: none; margin-left: 120px; padding-left: 0; }

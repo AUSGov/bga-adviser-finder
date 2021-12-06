@@ -1449,6 +1449,18 @@
     }
     .adviser-content {
         padding: 32px;
+        
+        .service-area-map {
+            min-height: 20px;
+            margin-top: 16px;
+            
+            img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+            
+        }
 
         .adviser-details, ul {
             padding: 0;
