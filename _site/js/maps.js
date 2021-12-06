@@ -17,7 +17,7 @@ function initMap() {
    });
     
     // Create markers
-    /*let markers =  []; 
+    let markers =  []; 
     for (let i = 0; i < services.length; i++) {
         const lat = parseFloat(services[i].lat);
         const lng = parseFloat(services[i].lng);
@@ -84,7 +84,7 @@ function initMap() {
     }
 
     const markerCluster = new markerClusterer.MarkerClusterer({ map, markers});
-    */
+    
     // Apply postcode to map (move to place on map)
     let postcode_btn = document.getElementById("apply-postcode");
     google.maps.event.addDomListener(postcode_btn, "click", () => {
