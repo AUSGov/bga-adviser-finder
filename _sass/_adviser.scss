@@ -564,7 +564,7 @@
                 position: absolute;
                 top: 82px;
                 left: 24px;
-                z-index: 9000;
+                z-index: 500;
                 padding: 8px 16px;
                 background: $white;
                 box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px;
@@ -881,7 +881,7 @@
         @media(max-width: 767px) {
             .search-card-content .top-row {
                 .search-card-content-type {
-                    margin-top: 32px;
+                    margin-top: 0px;
                     width: 100%;
                     position: relative;
                 }
@@ -889,6 +889,22 @@
             }
         }
         @media(max-width: 576px) {
+            #view-tabs-buttons {
+                display: flex;
+            }
+            #maps-view {
+                #map {
+                    height: 350px;
+                }
+                #australia-wide {
+                    .australia-wide-button {
+                        padding: 16px;
+                    }
+                    .australia-wide-content {
+                        padding: 16px;
+                    }
+                }
+            }
             .search-card-result {
                 .search-card-header {
                     h3 {

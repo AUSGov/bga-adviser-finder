@@ -1,5 +1,13 @@
+//Get viewport size
+let viewportWidth = window.innerWidth;
+let zoom = 4;
 
-// Define Google map object
+if (viewportWidth <= 576) {
+    zoom = 3;
+}
+
+
+// Initalize Google map
 let map;
 
 function initMap() {
@@ -13,7 +21,7 @@ function initMap() {
         scaleControl: false,
         streetViewControl: false,
         fullscreenControl: false,
-        zoom: 4,
+        zoom: zoom,
    });
     
     // Create markers
@@ -118,6 +126,13 @@ function initMap() {
         map.setZoom(4);
     });
     
+    
+    // Reset zoom on mobile devices
+    // listen for the window resize event & trigger Google Maps to update too
+    $(window).resize(function() {
+        // (the 'map' here is the result of the created 'var map = ...' above)
+        google.maps.event.trigger(map, "resize");
+    });
     
 
 }  // End initMap()

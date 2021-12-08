@@ -4,18 +4,6 @@
 
 $(document).ready(function () {
     
-    // Max amount for grants 'showing. and function to keep number between 0 and max_showing.
-    var max_showing = 6;
-    var max_min_count = function(number){
-        var count = number;
-        if (count > 131) {
-            count = 131;
-        } else if (count < 10) {
-            count = 11;
-        }
-        return count; 
-    };
-
     
     // Main navigation functionality
     $('.navbar-nav .nav-item.dropdown').on('click', function(){
@@ -85,15 +73,6 @@ $(document).ready(function () {
            $('#navigation-bar').show(); 
         }
     });
-    
-    
-    
-    // Information page accordions
-    $('.accordion-item-tile').on('click', function(){
-        $(this).parents('.accordion-item').toggleClass('open');
-        $(this).parents('.accordion-item').find('.accordion-item-content').slideToggle(400);
-    });
-    
     
     
     // Prevent click empty 'a' tag from causing scrolling
@@ -239,8 +218,7 @@ $(document).ready(function () {
     
     
     // FUNCTION TO COUNT and SET active filter
-    var all_filter_types = ['event-type', 'topic', 'location', 'cost', 'date'];
-    //var subcategory_filters = ['date', 'topic', 'location'];
+    var all_filter_types = ['postcode', 'delivery-type', 'topic'];
 
     var add_filter_classes= function(filter_type, filter_option, filter_label){
         var show_class = filter_type + "-show";
@@ -399,13 +377,15 @@ $(document).ready(function () {
      
     
     //CREATE 'SHOWING' NUMBER
-    var showing = sessionStorage.getItem('showing');
+    /*var showing = sessionStorage.getItem('showing');
     
     if (showing === null) {
         showing = 6;
     }
     
     $('span.number').text(showing);
+    */
+    
     
     // LIMIT NUMBER OF SEARCH CARDS DISPLAY
     var count_results = function(){
@@ -431,7 +411,7 @@ $(document).ready(function () {
             $('.page-number-wrapper').css('display', 'block');
             
            
-            var new_showing = Math.floor(Math.random() * 21) + 50;
+            var new_showing = Math.floor(Math.random() * 61) + 50;
             $('span.number').text(new_showing);
         }
         
