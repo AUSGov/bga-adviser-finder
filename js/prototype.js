@@ -259,21 +259,21 @@ $(document).ready(function () {
             }   
         });
         
-        var filter_count = sessionStorage.getItem(grandparent);
+        var filter_count = localStorage.getItem(grandparent);
         
         if(filter_count === null) {
             filter_count = 0;
         }
         
         if(parent.hasClass('selected')) { 
-            sessionStorage.setItem(filter_option, "true");
+            localStorage.setItem(filter_option, "true");
             filter_count = +filter_count  +1;
-            sessionStorage.setItem(grandparent, filter_count);
+            localStorage.setItem(grandparent, filter_count);
         
         } else {
-            sessionStorage.removeItem(filter_option);
+            localStorage.removeItem(filter_option);
             filter_count = +filter_count  -1;
-            sessionStorage.setItem(grandparent, filter_count);    
+            localStorage.setItem(grandparent, filter_count);    
         }
        
     };
@@ -281,7 +281,7 @@ $(document).ready(function () {
     
     // FUNCTIONS TO SET FILTER COUNTS WHEN OPTIONS ARE SELECTED / DESELECTED (mobile)  
     var set_mobile_filters = function(filter_type){
-        var filter_total = sessionStorage.getItem(filter_type);
+        var filter_total = localStorage.getItem(filter_type);
         
         if (filter_total === '0') {
             
@@ -292,9 +292,9 @@ $(document).ready(function () {
     };
     
     var set_total_filter_count = function(){
-        var delivery_type = parseInt(sessionStorage.getItem('delivery-type')),
-            topic = parseInt(sessionStorage.getItem('topic')),
-            postcode = parseInt(sessionStorage.getItem('postcode'));
+        var delivery_type = parseInt(localStorage.getItem('delivery-type')),
+            topic = parseInt(localStorage.getItem('topic')),
+            postcode = parseInt(localStorage.getItem('postcode'));
         
         if (isNaN(delivery_type)) {
             delivery_type = 0;
@@ -338,7 +338,7 @@ $(document).ready(function () {
         var filter_label = $(this).attr('data-label');
         var filter_type = $(this).parents('.filter-item').attr('ID');
 
-        sessionStorage.removeItem(filter_option);
+        localStorage.removeItem(filter_option);
         
         $(this).toggleClass('selected');
         $(".checkbox-item[data-option='" + filter_option + "']").toggleClass('selected');
@@ -372,8 +372,8 @@ $(document).ready(function () {
         var postcode_val = $(this).parents('.text-field-item').find('input').val();
         $(this).parents('.text-field-item').addClass('selected');
         
-        sessionStorage.setItem(filter_option, 1);
-        sessionStorage.setItem(filter_option + "_value", postcode_val);
+        localStorage.setItem(filter_option, 1);
+        localStorage.setItem(filter_option + "_value", postcode_val);
         
         add_show_classes_on_load('.list-view.search-card-result');
         
@@ -392,8 +392,8 @@ $(document).ready(function () {
         var that = $(this);
         $(this).parents('.text-field-item').removeClass('selected');
         $(this).parents('.text-field-item').find('input').removeClass('selected').val('');
-        sessionStorage.removeItem('postcode_value');
-        sessionStorage.setItem('postcode', "0");
+        localStorage.removeItem('postcode_value');
+        localStorage.setItem('postcode', "0");
         
         add_show_classes_on_load('.list-view.search-card-result');
         change_showing(that, '.text-field-item', 1);
@@ -403,7 +403,7 @@ $(document).ready(function () {
     
     
     //CREATE 'SHOWING' NUMBER
-    var showing = sessionStorage.getItem('showing');
+    var showing = localStorage.getItem('showing');
     
     if (showing === null) {
         showing = 642;
@@ -420,7 +420,7 @@ $(document).ready(function () {
     };
     
     var change_showing = function(item, parent, change_factor){
-        var showing = parseInt(sessionStorage.getItem('showing'));  
+        var showing = parseInt(localStorage.getItem('showing'));  
         if (isNaN(showing)) {
             showing = 642;
         }
@@ -428,12 +428,12 @@ $(document).ready(function () {
         if ( $(item).parents(parent).hasClass('selected')) {
             showing = Math.round(showing / 43 * change_factor);
             showing = showing_range(showing);
-            sessionStorage.setItem('showing', showing);
+            localStorage.setItem('showing', showing);
             $('span.number').text(showing);
         } else {
             showing = Math.round(showing * 43 / change_factor);
             showing = showing_range(showing);
-            sessionStorage.setItem('showing', showing);
+            localStorage.setItem('showing', showing);
             $('span.number').text(showing);
         }
         
@@ -475,7 +475,7 @@ $(document).ready(function () {
 
         //add active state to mobile filter counters
         for (var m = 0; m < all_filter_types.length; m++) {
-            var filter_type = sessionStorage.getItem(all_filter_types[m]);
+            var filter_type = localStorage.getItem(all_filter_types[m]);
             
             if (filter_type !== null) {
                 if (filter_type === '0') {
@@ -537,7 +537,7 @@ $(document).ready(function () {
             }
         });      
         
-        sessionStorage.clear();
+        localStorage.clear();
         
         $('.mobile-counter').each(function(){
             $(this).removeClass('active').text(0);
@@ -545,7 +545,7 @@ $(document).ready(function () {
         $('.filter-counter').text(0);
         
         var showing = 642;
-        sessionStorage.setItem('showing', 642);
+        localStorage.setItem('showing', 642);
         $('span.number').text(showing);
         
         vary_search_order();
@@ -559,14 +559,14 @@ $(document).ready(function () {
 
         
     // SET ACTIVE FILTERS ON PAGE LOAD - MULTIPLE SELECT
-    $('#postcode .active-filters li').text(sessionStorage.getItem('postcode_value'));
+    $('#postcode .active-filters li').text(localStorage.getItem('postcode_value'));
     
     var filter_set_multiple = ['in-person', 'phone', 'online', 'home-and-workplace', 'digital-and-online', 'dispute-resolution', 'employing-people', 'general-business-advice-and-planning', 'government-grant-information', 'importing-and-exporting', 'taxation', 'work-health-and-safety', 'postcode-value'];
     
     var filter_types = ['delivery-type', 'topic'];
     
     var add_show_classes_on_load = function(item){
-        var location = sessionStorage.getItem('postcode_value');
+        var location = localStorage.getItem('postcode_value');
         
         $(item).each(function(){
             if (location === "4000") {
@@ -593,7 +593,7 @@ $(document).ready(function () {
         
         var filter_option = filter_set_multiple[filter];    
         
-            if (sessionStorage.getItem(filter_option) === "true") {  
+            if (localStorage.getItem(filter_option) === "true") {  
             
                 // Select checklist filters on the page  
                 var filter_type = $('.active-filters li[data-option="' + filter_option + '"]').attr('filter-type');
@@ -614,7 +614,7 @@ $(document).ready(function () {
                 $('label[data-option="' + filter_option + '"]').parent('.checkbox-item').toggleClass('selected');
             }  
     }
-    var location = sessionStorage.getItem('postcode_value');
+    var location = localStorage.getItem('postcode_value');
     $('#postcode-input').val(location);
     
     if (location) {
@@ -689,6 +689,9 @@ $(document).ready(function () {
         var active_view = $(this).attr('data-label');
         $('.view-tab').removeClass('active');
         $('#' + active_view).addClass('active');
+        
+        var view_type = $(this).attr('data-label');
+        localStorage.setItem('view type', view_type);
     });
 
     
@@ -698,6 +701,28 @@ $(document).ready(function () {
         $('.australia-wide-content').slideToggle();
     });
 
+    
+    // SET VIEW TYPE On PAGE LOAD
+    var view_type = localStorage.getItem('view type');
+    if (!view_type) {
+        view_type = "list-view";
+    }
+    $('.view-tab').each(function(){
+        $(this).removeClass('active');
+        
+        if ($(this).attr('id') === view_type) {
+            $(this).addClass('active');  
+        }
+    });
+    $("#view-tabs-buttons button").each(function(){
+        $(this).removeClass('active');
+        
+        if ($(this).attr('data-label') === view_type) {
+            $(this).addClass('active');  
+        }
+    });
+    
+    
     
     
 }); // END doc ready

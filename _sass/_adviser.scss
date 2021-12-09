@@ -578,7 +578,6 @@
                         }
                     }
                     button {
-                        //background: pink !important;
                         top: 8px !important;
                         right: 8px !important;
                         height: 24px !important;
@@ -586,6 +585,7 @@
                         background: url(../assets/Icon-cross-333333.svg) no-repeat !important;
                         opacity: 1 !important;
                         background-size: 24px 24px !important;
+                        
                         img {
                             display: none !important;
                         }
@@ -809,7 +809,13 @@
             }
             #maps-view {
                 #map {
-                    height: 350px;
+                    height: 400px;
+                }
+                .gm-style {
+                    .gm-style-iw-c {
+                        max-width: 300px !important;
+                        max-height: 400px !important;
+                    }
                 }
                 #australia-wide {
                     .australia-wide-button {
@@ -821,6 +827,8 @@
                 }
             }
             .search-card-result {
+                width: 100%;
+                
                 .search-card-header {
                     h3 {
                         font-size: 16px;
@@ -829,6 +837,10 @@
                 }
                 .search-card-content {
                     padding: 16px 24px 24px 24px;
+                    
+                    .top-row {
+                        padding-bottom: 16px;
+                    }
                     
                     .search-card-heading {
                         font-size: 18px;
@@ -1031,7 +1043,6 @@
                     height: 8px;
                     min-height: 8px;
                     z-index: 99;
-                    //background: pink;
                 }
                
                 .mobile-apply-filters-button {

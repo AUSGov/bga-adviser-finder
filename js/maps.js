@@ -1,11 +1,39 @@
-//Get viewport size
+//Get viewport size and set initial zoom factor, lat and lng
 let viewportWidth = window.innerWidth;
 let zoom = 4;
+let lat = -27.000;
+let lng = 133.000;
+let initial_location = localStorage.getItem('postcode_value');
 
 if (viewportWidth <= 576) {
     zoom = 3;
 }
 
+// Get postcode data
+/*fetch('https://ausgov.github.io/bga-adviser-finder/js/postcodes.json')
+    .then(response => response.json())
+    .then(data => {
+        const result = data.find( ({ postcode }) => postcode === initial_location );
+        console.log(result);
+
+        //lat = result.lat;
+        //lng = result.long;
+        
+   })*/
+
+
+//Set initial location
+
+/*
+console.log(initial_location);
+if (!initial_location) {
+    zoom = zoom;
+    
+    
+} else {
+    zoom = 11;
+}
+*/
 
 // Initalize Google map
 let map;
@@ -14,8 +42,8 @@ function initMap() {
   
     map = new google.maps.Map(document.getElementById("map"), {
         center: {
-          lat: -27.000,
-          lng: 133.000
+          lat: lat,
+          lng: lng
         },
         mapTypeControl: false,
         scaleControl: false,
@@ -123,16 +151,27 @@ function initMap() {
     let reset_btn = document.getElementById("reset");
     google.maps.event.addDomListener(reset, 'click', function() {
         map.setCenter({lat: -27.000, lng: 133.000});
-        map.setZoom(4);
+        map.setZoom(zoom);
+    });
+    
+    // Reset reset when postcode filter is cleared
+    let clear_postcode = document.getElementById("clear-postcode");
+    google.maps.event.addDomListener(clear_postcode, 'click', function() {
+        console.log('clicked');
+        map.setCenter({lat: -27.000, lng: 133.000});
+        map.setZoom(zoom);
+    });
+    
+    // Reset map when all filters cleared
+    let clear_all = document.getElementById("clear-all");
+    google.maps.event.addDomListener(clear_all, 'click', function() {
+        console.log('clicked');
+        map.setCenter({lat: -27.000, lng: 133.000});
+        map.setZoom(zoom);
     });
     
     
-    // Reset zoom on mobile devices
-    // listen for the window resize event & trigger Google Maps to update too
-    $(window).resize(function() {
-        // (the 'map' here is the result of the created 'var map = ...' above)
-        google.maps.event.trigger(map, "resize");
-    });
+    
     
 
 }  // End initMap()
