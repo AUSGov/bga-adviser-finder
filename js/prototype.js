@@ -437,31 +437,32 @@ $(document).ready(function () {
     };
     
     // LIMIT NUMBER OF SEARCH CARDS DISPLAY
-    
-    function Shuffle(o) {
-        for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-        return o;
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
     }
     
     var vary_search_order = function(){
         var cards = [];
 
-        /*$('.list-view.search-card-result').each(function(){
+        $('.list-view.search-card-result').each(function(){
             cards.push($(this));    
         });
         
-        console.log(cards.length);
-        Shuffle(cards);
-        console.log(cards.length);
+        var shuffled = shuffle(cards);
+
+        $('#list-view .inner-wrapper').html('');
         
-        
-        $('#list-view').html('');
-        for (var k = 0; k++, k <= cards.length;) {
-            $('#list-view').append(cards[k]);
-        }*/
-            
+        for (var card = 0; card < shuffled.length; card++) {
+            $('#list-view .inner-wrapper').append(shuffled[card]);
+        }
     };
-    vary_search_order();
     
     
     // MOBILE FILTER VISIBILITY
@@ -543,6 +544,8 @@ $(document).ready(function () {
         var showing = 642;
         sessionStorage.setItem('showing', 642);
         $('span.number').text(showing);
+        
+        vary_search_order();
         
     };
     
