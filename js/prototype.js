@@ -407,7 +407,7 @@ $(document).ready(function () {
     
     if (showing === null) {
         showing = 642;
-    } 
+    }
     $('span.number').text(showing);
     
     var showing_range = function(showing){
@@ -420,7 +420,10 @@ $(document).ready(function () {
     };
     
     var change_showing = function(item, parent, change_factor){
-        var showing = parseInt(sessionStorage.getItem('showing'));
+        var showing = parseInt(sessionStorage.getItem('showing'));  
+        if (isNaN(showing)) {
+            showing = 642;
+        }
         
         if ( $(item).parents(parent).hasClass('selected')) {
             showing = Math.round(showing / 43 * change_factor);
