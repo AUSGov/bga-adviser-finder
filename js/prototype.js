@@ -226,7 +226,7 @@ $(document).ready(function () {
         var parent = $("label[data-option='" + filter_option + "']").parents('.checkbox-item');
         var grandparent = $("label[data-option='" + filter_option + "']").parents('.filter-item').attr('ID');
         
-        $(".search-card-result").each(function(){
+        $(".list-view.search-card-result").each(function(){
             $(this).removeClass(show_class);   
             $(this).removeClass(hide_class);    
         }); 
@@ -236,11 +236,8 @@ $(document).ready(function () {
             var item = $(this).attr('data-label');
             selected_items.push(item);    
         });
-        
-        //console.log(selected_items);
-
               
-        $(".search-card-result").each(function(){
+        $(".list-view.search-card-result").each(function(){
              
             for (var m = 0; m < selected_items.length; m++ ) {
                 if ($(this).hasClass(selected_items[m])) {  
@@ -250,7 +247,7 @@ $(document).ready(function () {
             }
         });
         
-        $(".search-card-result").each(function(){
+        $(".list-view.search-card-result").each(function(){
            
             if( selected_items.length === 0 ) {
                 $(this).removeClass(hide_class);
@@ -295,28 +292,20 @@ $(document).ready(function () {
     };
     
     var set_total_filter_count = function(){
-        var event_type = parseInt(sessionStorage.getItem('event-type')),
+        var delivery_type = parseInt(sessionStorage.getItem('delivery-type')),
             topic = parseInt(sessionStorage.getItem('topic')),
-            location = parseInt(sessionStorage.getItem('location')),
-            cost = parseInt(sessionStorage.getItem('cost')),
-            date = parseInt(sessionStorage.getItem('date'));
+            postcode = parseInt(sessionStorage.getItem('postcode'));
         
-        if (isNaN(event_type)) {
-            event_type = 0;
+        if (isNaN(delivery_type)) {
+            delivery_type = 0;
         }
         if (isNaN(topic)) {
             topic = 0;
         }
-        if (isNaN(location)) {
-            location = 0;
+        if (isNaN(postcode)) {
+            postcode = 0;
         }
-        if (isNaN(cost)) {
-            cost = 0;
-        }
-        if (isNaN(date)) {
-            date = 0;
-        }
-        var total_filter_count = event_type + topic + location + cost + date;
+        var total_filter_count = delivery_type + topic + postcode;
         $(".filter-counter").text(total_filter_count);
     };
     
@@ -344,7 +333,7 @@ $(document).ready(function () {
     $('.active-filters.multi-select li').on('click', function(){
         
         //total_active_filters();
-        
+        var that = $(this);
         var filter_option = $(this).attr('data-option');
         var filter_label = $(this).attr('data-label');
         var filter_type = $(this).parents('.filter-item').attr('ID');
@@ -355,13 +344,13 @@ $(document).ready(function () {
         $(".checkbox-item[data-option='" + filter_option + "']").toggleClass('selected');
 
         add_filter_classes(filter_type, filter_option, filter_label);
-        count_results();
-        //task_result_display(subcategory_filters, "#search-result-Z");
-        
+        change_showing(that, '.checkbox-item', 19);    
+        vary_search_order();
     });
   
     // Select filter checkbox options
     $('.checkbox-item label').on('click', function(){
+        var that = $(this);
         var filter_option = $(this).attr('data-option');
         var filter_label = $(this).attr('data-label');
         var filter_type = $(this).parents('.filter-item').attr('ID');
@@ -370,60 +359,109 @@ $(document).ready(function () {
         $(this).parents('.filter-item').find('.active-filters li[data-option="' + filter_option +'"]').toggleClass('selected ');
   
         add_filter_classes(filter_type, filter_option, filter_label);
-        count_results();
         set_mobile_filters(filter_type);
-                  
+        change_showing(that, '.checkbox-item', 19);   
+        vary_search_order();
     }); 
-     
-    
-    //CREATE 'SHOWING' NUMBER
-    /*var showing = sessionStorage.getItem('showing');
-    
-    if (showing === null) {
-        showing = 6;
-    }
-    
-    $('span.number').text(showing);
-    */
     
     
-    // LIMIT NUMBER OF SEARCH CARDS DISPLAY
-    var count_results = function(){
-        var count = 0;
-        $('.search-card-result').each(function(){
-            $(this).removeClass('hidden');
-        });
-        $('.search-card-result:visible').each(function(){
-            count++;
-            
-            if (count > 10) {
-                $(this).addClass('hidden');
-            } 
-        });
+    // Select filter text input options (postcode field)
+    $('.text-field-item .apply-postcode').on('click', function(){
+        var that = $(this);
+        var filter_option = "postcode";
+        var postcode_val = $(this).parents('.text-field-item').find('input').val();
+        $(this).parents('.text-field-item').addClass('selected');
         
-        if(count < 10) {
-            $('.pagination-wrapper').css('display', 'none');
-            $('.page-number-wrapper').css('display', 'none');
-            
-            $('span.number').text(count);
+        sessionStorage.setItem(filter_option, 1);
+        sessionStorage.setItem(filter_option + "_value", postcode_val);
+        
+        add_show_classes_on_load('.list-view.search-card-result');
+        
+        if( !$(this).parents('.text-field-item').find('input').val() ) {
+            $(this).parents('.text-field-item').find('input').removeClass('selected');
         } else {
-            $('.pagination-wrapper').css('display', 'block');
-            $('.page-number-wrapper').css('display', 'block');
-            
-           
-            var new_showing = Math.floor(Math.random() * 61) + 50;
-            $('span.number').text(new_showing);
+             $(this).parents('.text-field-item').find('input').addClass('selected');
         }
         
-        if (count === 0) {
-            $('.no-results').addClass('show');
+        set_mobile_filters(filter_type);
+        change_showing(that, '.text-field-item', 1); 
+        vary_search_order();
+    });
+    
+    $(".clear-postcode").on('click', function(){
+        var that = $(this);
+        $(this).parents('.text-field-item').removeClass('selected');
+        $(this).parents('.text-field-item').find('input').removeClass('selected').val('');
+        sessionStorage.removeItem('postcode_value');
+        sessionStorage.setItem('postcode', "0");
+        
+        add_show_classes_on_load('.list-view.search-card-result');
+        change_showing(that, '.text-field-item', 1);
+        vary_search_order();
+    });
+    
+    
+    
+    //CREATE 'SHOWING' NUMBER
+    var showing = sessionStorage.getItem('showing');
+    
+    if (showing === null) {
+        showing = 642;
+    } 
+    $('span.number').text(showing);
+    
+    var showing_range = function(showing){
+        if (showing < 10) {
+            showing = 11;
+        } else if (showing > 642) {
+            showing = 642;
+        }
+        return showing;
+    };
+    
+    var change_showing = function(item, parent, change_factor){
+        var showing = parseInt(sessionStorage.getItem('showing'));
+        
+        if ( $(item).parents(parent).hasClass('selected')) {
+            showing = Math.round(showing / 43 * change_factor);
+            showing = showing_range(showing);
+            sessionStorage.setItem('showing', showing);
+            $('span.number').text(showing);
         } else {
-            $('.no-results').removeClass('show');
+            showing = Math.round(showing * 43 / change_factor);
+            showing = showing_range(showing);
+            sessionStorage.setItem('showing', showing);
+            $('span.number').text(showing);
         }
         
     };
-    count_results();
     
+    // LIMIT NUMBER OF SEARCH CARDS DISPLAY
+    
+    function Shuffle(o) {
+        for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+        return o;
+    }
+    
+    var vary_search_order = function(){
+        var cards = [];
+
+        /*$('.list-view.search-card-result').each(function(){
+            cards.push($(this));    
+        });
+        
+        console.log(cards.length);
+        Shuffle(cards);
+        console.log(cards.length);
+        
+        
+        $('#list-view').html('');
+        for (var k = 0; k++, k <= cards.length;) {
+            $('#list-view').append(cards[k]);
+        }*/
+            
+    };
+    vary_search_order();
     
     
     // MOBILE FILTER VISIBILITY
@@ -482,11 +520,18 @@ $(document).ready(function () {
         $('.filter-item-content').slideUp();
         $('.filter-item .custom-control-input').prop('checked', false).removeClass('selected');
         
-        $('.search-card-result').each(function(){
-            $(this).removeClass("event-type-hide event-type-show date-hide date-show topic-hide topic-show postcode-hide postcode-show");
-        });
+        $('.text-field-item').removeClass('selected');
+        $('#postcode-input').removeClass('selected').val('');
         
-        count_results();
+        $('.list-view.search-card-result').each(function(){
+            if ($(this).hasClass("brisbane")) {
+                $(this).removeClass("postcode-show");
+                $(this).addClass("postcode-hide");
+            } else {
+                $(this).removeClass("postcode-hide");
+                $(this).addClass("postcode-show");
+            }
+        });      
         
         sessionStorage.clear();
         
@@ -494,6 +539,11 @@ $(document).ready(function () {
             $(this).removeClass('active').text(0);
         });
         $('.filter-counter').text(0);
+        
+        var showing = 642;
+        sessionStorage.setItem('showing', 642);
+        $('span.number').text(showing);
+        
     };
     
     $('.clear-all').on('click', function(){
@@ -505,29 +555,32 @@ $(document).ready(function () {
     // SET ACTIVE FILTERS ON PAGE LOAD - MULTIPLE SELECT
     $('#postcode .active-filters li').text(sessionStorage.getItem('postcode_value'));
     
-    var filter_set_multiple = ['in-person-events', 'online-events', 'past-recorded-events', 'business-finance', 'business-planning', 'contracting-and-tendering', 'customer-service', 'digital-business', 'employing-people', 'exporting', 'government-grant-programs', 'industry-compliance', 'innovation-and-commercialisation', 'marketing', 'networking', 'starting-a-business', 'taxation-and-record-keeping', 'work-health-and-safety', 'past-mmonths', 'this-month', 'this-month-plus-1', 'this-month-plus-2', 'this-month-plus-3', 'australian-capital-territory', 'new-south-wales', 'northern-territory', 'queensland', 'south-australia', 'tasmania', 'victoria', 'western-australia', 'other-australian-territory', 'free-events', 'events-under-100', 'events-100-and-over'];
+    var filter_set_multiple = ['in-person', 'phone', 'online', 'home-and-workplace', 'digital-and-online', 'dispute-resolution', 'employing-people', 'general-business-advice-and-planning', 'government-grant-information', 'importing-and-exporting', 'taxation', 'work-health-and-safety', 'postcode-value'];
     
-    var filter_types = ['event-type', 'date', 'topic', 'cost','location'];
+    var filter_types = ['delivery-type', 'topic'];
     
     var add_show_classes_on_load = function(item){
+        var location = sessionStorage.getItem('postcode_value');
         
         $(item).each(function(){
-            if ( $(this).hasClass(filter_label) ) {
-                $(this).addClass(show_class);
-            }   
+            if (location === "4000") {
+                if ( $(this).hasClass("brisbane")) {
+                    $(this).addClass("postcode-show");
+                    $(this).removeClass("postcode-hide");
+                } else {
+                    $(this).addClass("postcode-hide");
+                    $(this).removeClass("postcode-show");
+                }
+            } else {
+                if ( $(this).hasClass("brisbane")) {
+                    $(this).removeClass("postcode-show");
+                    $(this).addClass("postcode-hide");
+                } else {
+                    $(this).removeClass("postcode-hide");
+                    $(this).addClass("postcode-show");
+                }
+            }  
         });   
-    };
-    
-    var add_hide_classes_on_load = function(item, filter_type){
-        
-        var show_class = filter_type + "-show";
-        var hide_class = filter_type + "-hide";
-        
-        $(item).each(function(){
-            if (!$(this).hasClass(show_class)) {
-                $(this).addClass(hide_class);
-            }
-        });
     };
     
     for ( var filter = 0; filter < filter_set_multiple.length; filter++) {
@@ -536,8 +589,7 @@ $(document).ready(function () {
         
             if (sessionStorage.getItem(filter_option) === "true") {  
             
-                // Select filters on the page  
-                
+                // Select checklist filters on the page  
                 var filter_type = $('.active-filters li[data-option="' + filter_option + '"]').attr('filter-type');
                 var filter_label = $('.active-filters li[data-option="' + filter_option + '"]').attr('data-label');
                 
@@ -554,22 +606,20 @@ $(document).ready(function () {
             
                 $('.active-filters li[data-option="' + filter_option + '"]').toggleClass('selected');    
                 $('label[data-option="' + filter_option + '"]').parent('.checkbox-item').toggleClass('selected');
-                
-                add_show_classes_on_load('.search-card-result');
-            }
-        
+            }  
     }
-    for ( var i = 0; i < filter_types.length; i++) {
-        
-        var f_type = filter_types[i];
-        
-        if (sessionStorage.getItem(f_type) > 0) {
-            add_hide_classes_on_load('.search-card-result', f_type);
-        }
+    var location = sessionStorage.getItem('postcode_value');
+    $('#postcode-input').val(location);
+    
+    if (location) {
+        $('.text-field-item').addClass('selected');
+        $('#postcode-input').addClass('selected'); 
     }
-    count_results();
+    
+    add_show_classes_on_load('.list-view.search-card-result');
 
     set_total_filter_count();
+    
     
     /*
     // SET DYNAMIC MONTHS

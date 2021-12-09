@@ -4722,7 +4722,7 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .mobile-show { display: none; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item { border-bottom: solid 1px #D8D8D8; padding: 16px 0; /* .toggle-question { padding: 0; label { @include font-format($font-family, $font-regular, normal); text-transform: uppercase; font-size: 16px; padding: 0 0 0 0; &:before { width: 44px; height: 16px; background: $grey; border: none; margin-top: 4px; border-radius: 50px; cursor: pointer; position: absolute; right: 0; left: auto; top: 0; } &:after { background: $white; width: 30px; height: 30px; border: $grey-dark solid 1px; border-radius: 50px; background: url(../assets/Icon-cross-grey.svg) no-repeat $white; background-position: center center; background-size: 14px 14px;   top: 0px; right: 10px; left: auto; cursor: pointer; } } .custom-control-input:focus~.custom-control-label::before { box-shadow: none; } .custom-control-input:checked~.custom-control-label::after { background: url(../assets/Icon-tick-filters.svg) no-repeat $white; background-position: center center; border: solid 2px $black-light; background-size: 18px 14px; left: -34px; } } */ }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item { border-bottom: solid 1px #D8D8D8; padding: 16px 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item:first-of-type { padding-top: 0; }
 
@@ -4782,19 +4782,25 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item { display: flex; align-items: center; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter label { font-family: "Open Sans", sans-serif; font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.5; text-transform: uppercase; margin: 0 16px 0 0; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item label { font-family: "Open Sans", sans-serif; font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.5; text-transform: uppercase; margin: 0 16px 0 0; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .postcode-input { display: flex; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input { display: flex; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .postcode-input input { width: 60%; height: 48px; margin-right: 0; padding: 0 8px; border: solid 1px #333333; border-right: none; display: block; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input input { width: 60%; height: 48px; margin-right: 0; padding: 0 8px; border: solid 1px #333333; border-right: none; display: block; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .postcode-input input::placeholder { font-size: 14px; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input input::placeholder { font-size: 14px; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .postcode-input button { background: #CFEBEB; font-size: 14px; color: #333333; border-radius: 6px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; border: solid 2px #218080; width: 40%; height: 48px; font-weight: 600; padding: 0 16px; display: block; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input button { background: #CFEBEB; font-size: 14px; color: #333333; border-radius: 6px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; border: solid 2px #218080; width: 40%; height: 48px; font-weight: 600; padding: 0 16px; display: block; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .postcode-input button:focus { outline: none; background: #105C5C; border-color: #105C5C; color: #ffffff; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input button:focus { outline: none; background: #105C5C; border-color: #105C5C; color: #ffffff; }
 
-#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .postcode-input button:hover { background-color: #218080; color: #ffffff; border-color: #105C5C; }
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input button:hover { background-color: #218080; color: #ffffff; border-color: #105C5C; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item .postcode-input .clear-postcode { display: none; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item.selected .postcode-input { position: relative; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item.selected .postcode-input .clear-postcode { display: block; position: absolute; background: url(../assets/Icon-cross-333333.svg) no-repeat; background-size: 16px 16px; background-position: center center; height: 16px; width: 16px; text-indent: -9999px; top: calc(50% - 8px); left: calc(60% - 24px); }
 
 @media (max-width: 992px) { #adviser-finder .results-section .filter-and-results-wrapper .filter-wrapper .filters .filter-item.text-field-filter .text-field-item { display: block; } }
 
@@ -4860,7 +4866,17 @@ ul.event-info li:last-of-type { padding: 0; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper #maps-view #australia-wide.open .australia-wide-button svg { transform: rotate(180deg); }
 
-#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result { padding: 0px; margin-bottom: 32px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px; box-sizing: border-box; border-top: 4px solid #4569A0; display: block; /* &#search-result-Z.no-filters { display: none !important; } &.hidden { display: none !important; } &.event-type-show { display: block; &.date-hide { display: none; } &.topic-hide { display: none; } &.location-hide { display: none; } &.cost-hide { display: none; } } &.event-type-hide { display: none; } &.date-show { display: block; &.event-type-hide { display: none; } &.topic-hide { display: none; } &.location-hide { display: none; } &.cost-hide { display: none; } } &.date-hide { display: none; } &.topic-show { display: block; &.date-hide { display: none; } &.event-type-hide { display: none; } &.location-hide { display: none; } &.cost-hide { display: none; } } &.topic-hide { display: none; } &.location-show { display: block; &.date-hide { display: none; } &.event-type-hide { display: none; } &.topic-hide { display: none; } &.cost-hide { display: none; } } &.location-hide { display: none; } &.cost-show { display: block; &.date-hide { display: none; } &.topic-hide { display: none; } &.location-hide { display: none; } &.event-type-hide { display: none; } } &.cost-hide { display: none; } */ }
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result { padding: 0px; margin-bottom: 32px; box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 6px 0px; box-sizing: border-box; border-top: 4px solid #4569A0; display: block; /*&.delivery-type-show { display: block; &.postcode-hide { display: none; } &.topic-hide { display: none; } }*/ /*&.topic-show { display: block; &.postcode-hide { display: none; } &.delivery-type-type-hide { display: none; } } &.topic-hide { display: none; }*/ }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result.brisbane { background: pink; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result.hidden { display: none !important; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result.delivery-type-hide { display: none; }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result.postcode-show { display: block; /*&.delivery-type-hide { display: none; } &.topic-hide { display: none; }*/ }
+
+#adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result.postcode-hide { display: none; }
 
 #adviser-finder .results-section .filter-and-results-wrapper .results-wrapper .search-card-result .search-card-content { padding: 24px; }
 

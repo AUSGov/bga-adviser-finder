@@ -103,7 +103,7 @@ function initMap() {
             .then(response => response.json())
             .then(data => {
                 const result = data.find( ({ postcode }) => postcode === postcode_input );
-                console.log(result);
+                //console.log(result);
                 
                 const new_lat = result.lat;
                 const new_lng = result.long;
