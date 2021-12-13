@@ -556,6 +556,14 @@ $(document).ready(function () {
         clear_filters();
     });
     
+    
+    // Clear postcode on map reset
+    $('#reset').on('click', function(){
+        localStorage.removeItem("postcode_value");
+        $('#postcode-input').val("");
+        $('.text-field-item').removeClass('selected');
+        $('#postcode-input').removeClass('selected'); 
+    });
 
         
     // SET ACTIVE FILTERS ON PAGE LOAD - MULTIPLE SELECT
@@ -625,62 +633,9 @@ $(document).ready(function () {
     add_show_classes_on_load('.list-view.search-card-result');
 
     set_total_filter_count();
+
     
-    
-    /*
-    // SET DYNAMIC MONTHS
-    var date = new Date(),
-        current_month = date.getMonth(),
-        current_month_plus_1 =  date.getMonth() + 1,
-        current_month_plus_2 =  date.getMonth() + 2,
-        month_set = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        current_year = date.getFullYear(),
-        next_year = current_year + 1;
-         
-    if (current_month === 10 ) {
-        $('.current-month').text(month_set[current_month] + ' ' + current_year);
-        $('.current-month-plus-1').text(month_set[current_month_plus_1] + ' ' + current_year);
-        $('.current-month-plus-2').text(month_set[current_month_plus_2] + ' ' + next_year);
-        $('.current-month-plus-2-no-date').text(month_set[current_month_plus_2]);
-   } 
-    else if (current_month === 11) {
-        $('.current-month').text(month_set[current_month] + ' ' + current_year);
-        $('.current-month-plus-1').text(month_set[current_month_plus_1] + ' ' + next_year);
-        $('.current-month-plus-2').text(month_set[current_month_plus_2] + ' ' + next_year);
-        $('.current-month-plus-2-no-date').text(month_set[current_month_plus_2]);
-   } 
-    else {
-        $('.current-month').text(month_set[current_month] + ' ' + current_year);
-        $('.current-month-plus-1').text(month_set[current_month_plus_1] + ' ' + current_year);
-        $('.current-month-plus-2').text(month_set[current_month_plus_2] + ' ' + current_year);
-        $('.current-month-plus-2-no-date').text(month_set[current_month_plus_2]);
-   }
-    
-    
-    
-    // READ MORE ACCORDIONS
-    $('.accordion.event-information .accordion-item button').on('click', function(){
-        
-        $(this).parents('.accordion-item').toggleClass('open');
-        $(this).parents('.accordion-item').find('.accordion-body').slideToggle();
-        
-        if ($(this).parents('.accordion-item').hasClass('open')) {
-            $(this).text('Read less');
-        } else {
-            $(this).text('Read more');
-        }
-    });
-    
-    
-    // SESSIONS ACCORDIONS
-    $('#sessions.accordion .accordion-item button').on('click', function(){
-        
-        $(this).parents('.accordion-item').toggleClass('open');
-        $(this).parents('.accordion-item').find('.accordion-body').slideToggle();
-    });
-    */
-    
-    
+
     // LIST VS MAPS VIEW
     $("#view-tabs-buttons button").on('click', function(){
         $("#view-tabs-buttons button").removeClass("active");

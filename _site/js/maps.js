@@ -3,43 +3,39 @@ let viewportWidth = window.innerWidth;
 let zoom = 4;
 let lat = -27.000;
 let lng = 133.000;
-let initial_location = localStorage.getItem('postcode_value');
 
 if (viewportWidth <= 576) {
     zoom = 3;
 }
 
-// Get postcode data
-/*fetch('https://ausgov.github.io/bga-adviser-finder/js/postcodes.json')
-    .then(response => response.json())
-    .then(data => {
-        const result = data.find( ({ postcode }) => postcode === initial_location );
-        console.log(result);
 
-        //lat = result.lat;
-        //lng = result.long;
-        
-   })*/
+// Get location function
+function get_location(new_postcode) {
+    fetch("https://ausgov.github.io/bga-adviser-finder/js/postcodes.json")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const initial_location = data.find(({
+                postcode
+            }) => postcode === new_postcode);
+            const new_lat = initial_location.lat;
+            const new_lng = initial_location.long;
 
+            map.setCenter({
+                lat: new_lat,
+                lng: new_lng
+            });
+            map.setZoom(11);
 
-//Set initial location
-
-/*
-console.log(initial_location);
-if (!initial_location) {
-    zoom = zoom;
-    
-    
-} else {
-    zoom = 11;
+        });
 }
-*/
 
 // Initalize Google map
 let map;
 
 function initMap() {
-  
+    
     map = new google.maps.Map(document.getElementById("map"), {
         center: {
           lat: lat,
@@ -51,6 +47,13 @@ function initMap() {
         fullscreenControl: false,
         zoom: zoom,
    });
+    
+    // Change postcode on load if it's been preset
+    var new_location = localStorage.getItem("postcode_value");
+    if(new_location) {
+        let postcode = parseInt(new_location);
+        get_location(postcode);
+    }
     
     // Create markers
     let markers =  []; 
@@ -123,29 +126,13 @@ function initMap() {
     
     // Apply postcode to map (move to place on map)
     let postcode_btn = document.getElementById("apply-postcode");
-    google.maps.event.addDomListener(postcode_btn, "click", () => {
-        
+    
+    google.maps.event.addDomListener(postcode_btn, "click", () => { 
         const postcode_input = parseInt(document.getElementById("postcode-input").value);
-        
-        fetch('https://ausgov.github.io/bga-adviser-finder/js/postcodes.json')
-            .then(response => response.json())
-            .then(data => {
-                const result = data.find( ({ postcode }) => postcode === postcode_input );
-                //console.log(result);
-                
-                const new_lat = result.lat;
-                const new_lng = result.long;
-                map.setCenter({lat: new_lat, lng:new_lng});
-                
-           })
-        
-        map.setZoom(11);
+        get_location(postcode_input);
     });
     
-    
-    // Apply checkbox filters to map - TRY THIS!
-    // https://codepen.io/xtiggerk/pen/GBNPdO
- 
+
     
     // CUSTOM CONTROL to reset the map.
     let reset_btn = document.getElementById("reset");
@@ -154,10 +141,9 @@ function initMap() {
         map.setZoom(zoom);
     });
     
-    // Reset reset when postcode filter is cleared
+    // Reset map when postcode filter is cleared
     let clear_postcode = document.getElementById("clear-postcode");
     google.maps.event.addDomListener(clear_postcode, 'click', function() {
-        console.log('clicked');
         map.setCenter({lat: -27.000, lng: 133.000});
         map.setZoom(zoom);
     });
@@ -165,7 +151,6 @@ function initMap() {
     // Reset map when all filters cleared
     let clear_all = document.getElementById("clear-all");
     google.maps.event.addDomListener(clear_all, 'click', function() {
-        console.log('clicked');
         map.setCenter({lat: -27.000, lng: 133.000});
         map.setZoom(zoom);
     });
