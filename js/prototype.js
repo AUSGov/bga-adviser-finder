@@ -559,10 +559,15 @@ $(document).ready(function () {
     
     // Clear postcode on map reset
     $('#reset').on('click', function(){
+        var that = $(this);
+        
         localStorage.removeItem("postcode_value");
         $('#postcode-input').val("");
         $('.text-field-item').removeClass('selected');
         $('#postcode-input').removeClass('selected'); 
+        
+        //add_show_classes_on_load('.list-view.search-card-result');
+        change_showing(that, '.text-field-item', 1);
     });
 
         

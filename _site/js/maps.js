@@ -1,169 +1,5 @@
-//Get viewport size and set initial zoom factor, lat and lng
-let viewportWidth = window.innerWidth;
-let zoom = 4;
-let lat = -27.000;
-let lng = 133.000;
-
-if (viewportWidth <= 576) {
-    zoom = 3;
-}
-
-
-// Get location function
-function get_location(new_postcode) {
-    fetch("https://ausgov.github.io/bga-adviser-finder/js/postcodes.json")
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            const initial_location = data.find(({
-                postcode
-            }) => postcode === new_postcode);
-            const new_lat = initial_location.lat;
-            const new_lng = initial_location.long;
-
-            map.setCenter({
-                lat: new_lat,
-                lng: new_lng
-            });
-            map.setZoom(11);
-
-        });
-}
-
-// Initalize Google map
-let map;
-
-function initMap() {
-    
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: {
-          lat: lat,
-          lng: lng
-        },
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        fullscreenControl: false,
-        zoom: zoom,
-   });
-    
-    // Change postcode on load if it's been preset
-    var new_location = localStorage.getItem("postcode_value");
-    if(new_location) {
-        let postcode = parseInt(new_location);
-        get_location(postcode);
-    }
-    
-    // Create markers
-    let markers =  []; 
-    for (let i = 0; i < services.length; i++) {
-        const lat = parseFloat(services[i].lat);
-        const lng = parseFloat(services[i].lng);
-        const provider_type = services[i]["Provider Type"];
-        const title = services[i]["Display Name"];
-        const page = services[i]["Page"];
-        const description = services[i]["Long Description"];
-        const delivery1 = services[i]["Delivery 1"];
-        const delivery2 = services[i]["Delivery 2"];
-        const delivery3 = services[i]["Delivery 3"];
-        const delivery4 = services[i]["Delivery 4"];
-        let service_area = services[i]["Service Area"];
-        
-        if (service_area == "") {
-            service_area = "Australia wide";
-        }
-        
-        const contentString =
-            '<div class="search-card-result"><div class="search-card-content"><div class="top-row"><p class="search-card-content-type">' +
-            provider_type +
-            '</p></div><h5 class="search-card-heading"><a target="_blank" href="' +
-            page +
-            '">' +
-            title +
-            '</a></h5>' +
-            '<p class="search-card-body">' +
-            description +
-            '</p><div class="search-card-details"><div class="service-area"><p><strong>Service area: </strong>' +
-            service_area +
-            '</p></div><ul><li><strong>' +
-            delivery1 +
-            '</strong></li><li><strong>' +
-            delivery2 +
-            '</strong></li><li><strong>' +
-            delivery3 +
-            '</strong></li><li><strong>' +
-            delivery4 +
-            '</strong></li></ul></div>' +
-            '</div>' +
-            '</div>';
-        const infowindow = new google.maps.InfoWindow({
-            content: contentString,
-        });
-          
-        const marker = new google.maps.Marker({
-            position: {lat,lng},
-            icon: "../assets/Adviser_pin.svg",
-            map: map,
-            category: delivery3
-        });
-        
-        marker.addListener("click", () => {
-            infowindow.open({
-                anchor: marker,
-                map,
-                shouldFocus: false,
-            });
-        })
-        
-        markers.push(marker); 
-        
-
-        
-    }
-
-    const markerCluster = new markerClusterer.MarkerClusterer({ map, markers});
-    
-    // Apply postcode to map (move to place on map)
-    let postcode_btn = document.getElementById("apply-postcode");
-    
-    google.maps.event.addDomListener(postcode_btn, "click", () => { 
-        const postcode_input = parseInt(document.getElementById("postcode-input").value);
-        get_location(postcode_input);
-    });
-    
-
-    
-    // CUSTOM CONTROL to reset the map.
-    let reset_btn = document.getElementById("reset");
-    google.maps.event.addDomListener(reset, 'click', function() {
-        map.setCenter({lat: -27.000, lng: 133.000});
-        map.setZoom(zoom);
-    });
-    
-    // Reset map when postcode filter is cleared
-    let clear_postcode = document.getElementById("clear-postcode");
-    google.maps.event.addDomListener(clear_postcode, 'click', function() {
-        map.setCenter({lat: -27.000, lng: 133.000});
-        map.setZoom(zoom);
-    });
-    
-    // Reset map when all filters cleared
-    let clear_all = document.getElementById("clear-all");
-    google.maps.event.addDomListener(clear_all, 'click', function() {
-        map.setCenter({lat: -27.000, lng: 133.000});
-        map.setZoom(zoom);
-    });
-    
-    
-    
-    
-
-}  // End initMap()
-
-
 // Services providers array
-    const services = [
+const services = [
  {
    "Delivery 1": "Face to face",
    "Delivery 2": "Phone services",
@@ -10194,4 +10030,199 @@ function initMap() {
    "Postcode": 6798,
    "Business Topic": "Business planning"
  }
-]
+];
+
+//Get viewport size and set initial zoom factor, lat and lng
+let viewportWidth = window.innerWidth;
+let zoom = 4;
+let lat = -27.000;
+let lng = 133.000;
+
+if (viewportWidth <= 576) {
+    zoom = 3;
+}
+
+
+// Get location function
+function get_location(new_postcode) {
+    fetch("https://ausgov.github.io/bga-adviser-finder/js/postcodes.json")
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            const initial_location = data.find(({
+                postcode
+            }) => postcode === new_postcode);
+            const new_lat = initial_location.lat;
+            const new_lng = initial_location.long;
+
+            map.setCenter({
+                lat: new_lat,
+                lng: new_lng
+            });
+            map.setZoom(11);
+        }).catch(function () {
+            console.log("Error");
+            
+            /*map.setCenter({
+                lat: -27.000,
+                lng: 133.000
+            });
+            map.setZoom(11);*/
+        });
+}
+
+
+// Create markers function
+let markers = [];
+
+function create_markers(services){
+    
+    for (let i = 0; i < services.length; i++) {
+        const lat = parseFloat(services[i].lat);
+        const lng = parseFloat(services[i].lng);
+        const provider_type = services[i]["Provider Type"];
+        const title = services[i]["Display Name"];
+        const page = services[i]["Page"];
+        const description = services[i]["Long Description"];
+        const delivery1 = services[i]["Delivery 1"];
+        const delivery2 = services[i]["Delivery 2"];
+        const delivery3 = services[i]["Delivery 3"];
+        const delivery4 = services[i]["Delivery 4"];
+        let service_area = services[i]["Service Area"];
+        
+        if (service_area == "") {
+            service_area = "Australia wide";
+        }
+        
+        const contentString =
+            '<div class="search-card-result"><div class="search-card-content"><div class="top-row"><p class="search-card-content-type">' +
+            provider_type +
+            '</p></div><h5 class="search-card-heading"><a target="_blank" href="' +
+            page +
+            '">' +
+            title +
+            '</a></h5>' +
+            '<p class="search-card-body">' +
+            description +
+            '</p><div class="search-card-details"><div class="service-area"><p><strong>Service area: </strong>' +
+            service_area +
+            '</p></div><ul><li><strong>' +
+            delivery1 +
+            '</strong></li><li><strong>' +
+            delivery2 +
+            '</strong></li><li><strong>' +
+            delivery3 +
+            '</strong></li><li><strong>' +
+            delivery4 +
+            '</strong></li></ul></div>' +
+            '</div>' +
+            '</div>';
+        const infowindow = new google.maps.InfoWindow({
+            content: contentString,
+        });
+          
+        const marker = new google.maps.Marker({
+            position: {lat,lng},
+            icon: "../assets/Adviser_pin.svg",
+            map: map,
+            category: delivery3
+        });
+        
+        marker.addListener("click", () => {
+            infowindow.open({
+                anchor: marker,
+                map,
+                shouldFocus: false,
+            });
+        })
+        
+        markers.push(marker); 
+         
+    }
+   
+}
+
+// Function to change markers on filtering  - not used atm
+function filter_services(services_new, filter_type, filter_option){
+    let services_filtered = [];
+    
+    for (let i = 0; i < services_new.length; i++) {
+        if (services_new[i][filter_type] == filter_option) {
+            services_filtered.push(services_new[i]); 
+        }
+    }
+    return services_filtered;
+};
+//let services_filtered = filter_services(services, "Delivery 1", "Face to face");
+//console.log(services_filtered.length);
+
+
+
+// Initalize Google map
+let map;
+
+function initMap() {
+    
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: lat,
+          lng: lng
+        },
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        fullscreenControl: false,
+        zoom: zoom,
+   });
+    
+    // Change postcode on load if it's been preset
+    var new_location = localStorage.getItem("postcode_value");
+    if(new_location) {
+        let postcode = parseInt(new_location);
+        get_location(postcode);
+    }
+    
+    // Create markers
+    create_markers(services);
+
+    const markerCluster = new markerClusterer.MarkerClusterer({ map, markers});
+    
+    // Apply postcode to map (move to place on map)
+    let postcode_btn = document.getElementById("apply-postcode");
+    
+    google.maps.event.addDomListener(postcode_btn, "click", () => { 
+        const postcode_input = parseInt(document.getElementById("postcode-input").value);
+        get_location(postcode_input);
+    });
+    
+
+  
+    // CUSTOM CONTROL to reset the map.
+    let reset_btn = document.getElementById("reset");
+    google.maps.event.addDomListener(reset, 'click', function() {
+        map.setCenter({lat: -27.000, lng: 133.000});
+        map.setZoom(zoom);
+    });
+    
+    // Reset map when postcode filter is cleared
+    let clear_postcode = document.getElementById("clear-postcode");
+    google.maps.event.addDomListener(clear_postcode, 'click', function() {
+        map.setCenter({lat: -27.000, lng: 133.000});
+        map.setZoom(zoom);
+    });
+    
+    // Reset map when all filters cleared
+    let clear_all = document.getElementById("clear-all");
+    google.maps.event.addDomListener(clear_all, 'click', function() {
+        map.setCenter({lat: -27.000, lng: 133.000});
+        map.setZoom(zoom);
+    });
+    
+    
+  
+
+}  // End initMap()
+
+
+
