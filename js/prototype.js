@@ -370,22 +370,25 @@ $(document).ready(function () {
         var that = $(this);
         var filter_option = "postcode";
         var postcode_val = $(this).parents('.text-field-item').find('input').val();
-        $(this).parents('.text-field-item').addClass('selected');
-        
-        localStorage.setItem(filter_option, 1);
-        localStorage.setItem(filter_option + "_value", postcode_val);
-        
-        add_show_classes_on_load('.list-view.search-card-result');
-        
-        if( !$(this).parents('.text-field-item').find('input').val() ) {
-            $(this).parents('.text-field-item').find('input').removeClass('selected');
-        } else {
-             $(this).parents('.text-field-item').find('input').addClass('selected');
+
+        if (postcode_val) {
+            $(this).parents('.text-field-item').addClass('selected');
+
+            localStorage.setItem(filter_option, 1);
+            localStorage.setItem(filter_option + "_value", postcode_val);
+
+            add_show_classes_on_load('.list-view.search-card-result');
+
+            if( !$(this).parents('.text-field-item').find('input').val() ) {
+                $(this).parents('.text-field-item').find('input').removeClass('selected');
+            } else {
+                 $(this).parents('.text-field-item').find('input').addClass('selected');
+            }
+
+            set_mobile_filters(filter_type);
+            change_showing(that, '.text-field-item', 1); 
+            vary_search_order();
         }
-        
-        set_mobile_filters(filter_type);
-        change_showing(that, '.text-field-item', 1); 
-        vary_search_order();
     });
     
     $(".clear-postcode").on('click', function(){

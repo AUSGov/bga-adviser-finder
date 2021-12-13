@@ -10062,13 +10062,8 @@ function get_location(new_postcode) {
             });
             map.setZoom(11);
         }).catch(function () {
-            console.log("Error");
-            
-            /*map.setCenter({
-                lat: -27.000,
-                lng: 133.000
-            });
-            map.setZoom(11);*/
+            //console.log("Error");
+
         });
 }
 
