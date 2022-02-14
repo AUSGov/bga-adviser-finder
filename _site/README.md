@@ -1,4 +1,3 @@
-# Events finder prototype 2
+# Adviser finder prototype - with map
 
-[Finder tool demo](https://ausgov.github.io/bga-events-finder-2/events/events-finder.html)
-    
+[Finder tool demo](https://ausgov.github.io/bga-adviser-finder/adviser/adviser-finder.html)
