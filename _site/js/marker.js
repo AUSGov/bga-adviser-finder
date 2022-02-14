@@ -2591,7 +2591,7 @@ var markerClusterer = function (t) {
                 value: function (t, e) {
                     var r = t.count,
                         n = t.position,
-                        o = r > Math.max(10, e.clusters.markers.mean) ? "#E75755" : "#1B67B4",
+                        o = r > Math.max(10, e.clusters.markers.mean) ? "#1E4C86" : "#2E6CB9",
                         i = window.btoa('\n  <svg fill="'.concat(o, '" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">\n    <circle cx="120" cy="120" opacity="1.0" r="70" />\n    <circle cx="120" cy="120" opacity=".3" r="90" />\n    <circle cx="120" cy="120" opacity=".2" r="110" />\n  </svg>'));
                     return new google.maps.Marker({
                         position: n,

@@ -561,7 +561,7 @@ $(document).ready(function () {
     
     
     // Clear postcode on map reset
-    $('#reset').on('click', function(){
+    /*$('#reset').on('click', function(){
         var that = $(this);
         
         localStorage.removeItem("postcode_value");
@@ -571,7 +571,7 @@ $(document).ready(function () {
         
         //add_show_classes_on_load('.list-view.search-card-result');
         change_showing(that, '.text-field-item', 1);
-    });
+    });*/
 
         
     // SET ACTIVE FILTERS ON PAGE LOAD - MULTIPLE SELECT
@@ -657,15 +657,8 @@ $(document).ready(function () {
         localStorage.setItem('view type', view_type);
     });
 
-    
-    // AUSTRALIA WIDE SERVICES
-    $('.australia-wide-button').on('click', function(){
-        $('#australia-wide').toggleClass('open');
-        $('.australia-wide-content').slideToggle();
-    });
 
-    
-    // SET VIEW TYPE On PAGE LOAD
+    // SET VIEW TYPE ON PAGE LOAD
     var view_type = localStorage.getItem('view type');
     if (!view_type) {
         view_type = "list-view";

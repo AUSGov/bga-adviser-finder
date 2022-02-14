@@ -10080,15 +10080,43 @@ function create_markers(services){
         const title = services[i]["Display Name"];
         const page = services[i]["Page"];
         const description = services[i]["Long Description"];
-        const delivery1 = services[i]["Delivery 1"];
-        const delivery2 = services[i]["Delivery 2"];
-        const delivery3 = services[i]["Delivery 3"];
-        const delivery4 = services[i]["Delivery 4"];
+        let delivery1 = services[i]["Delivery 1"];
+        let delivery2 = services[i]["Delivery 2"];
+        let delivery3 = services[i]["Delivery 3"];
+        let delivery4 = services[i]["Delivery 4"];
         let service_area = services[i]["Service Area"];
         
         if (service_area == "") {
             service_area = "Australia wide";
         }
+        
+        let delivery_types = [];
+        
+        if(delivery1 != "") {
+            delivery1 = "in person, ";
+            delivery_types.push(delivery1);
+        }
+        if(delivery2 != "") {
+            delivery2 = "over the phone, ";
+            delivery_types.push(delivery2);
+        }
+        if(delivery3 != "") {
+            delivery3 = "online, ";
+            delivery_types.push(delivery3);
+        }
+        if(delivery4 != "") {
+            delivery4 = "through home and workplace visits, ";
+            delivery_types.push(delivery4);
+        }
+        
+        let delivery_string = "Services offered ";
+        
+        for (let j = 0; j < delivery_types.length; j++) {
+            delivery_string = delivery_string + ' ' + delivery_types[j];
+        }
+        delivery_string = delivery_string.substring(0, delivery_string.length - 2) + '.';
+        delivery_string = delivery_string.replace(/,(?=[^,]*$)/, ' and')
+        
         
         const contentString =
             '<div class="search-card-result"><div class="search-card-content"><div class="top-row"><p class="search-card-content-type">' +
@@ -10100,17 +10128,13 @@ function create_markers(services){
             '</a></h5>' +
             '<p class="search-card-body">' +
             description +
+            '</p>' +
+            '<p class="delivery-type">' + delivery_string +
+            
+              
             '</p><div class="search-card-details"><div class="service-area"><p><strong>Service area: </strong>' +
             service_area +
-            '</p></div><ul><li><strong>' +
-            delivery1 +
-            '</strong></li><li><strong>' +
-            delivery2 +
-            '</strong></li><li><strong>' +
-            delivery3 +
-            '</strong></li><li><strong>' +
-            delivery4 +
-            '</strong></li></ul></div>' +
+            '</p></div></div>' +
             '</div>' +
             '</div>';
         const infowindow = new google.maps.InfoWindow({
@@ -10149,10 +10173,6 @@ function filter_services(services_new, filter_type, filter_option){
     }
     return services_filtered;
 };
-//let services_filtered = filter_services(services, "Delivery 1", "Face to face");
-//console.log(services_filtered.length);
-
-
 
 // Initalize Google map
 let map;
